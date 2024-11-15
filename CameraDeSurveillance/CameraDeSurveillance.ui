@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CameraDeSurveillanceClass</class>
+ <widget class="QMainWindow" name="CameraDeSurveillanceClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>443</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CameraDeSurveillance</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="powerbutton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Allumer</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="initbutton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Initialiser</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="autobutton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mode Automatique</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="moveUpButton">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>140</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Да иде горе</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="moveLeftButton">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>169</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bewegen Sie sich nach links</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="moveRightButon">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>170</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>זז ימינn</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="moveDownButon">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>180</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ngir wàcci</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="OpenPortButton">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Digeriñ ar porzh</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="portChoiceComboBox">
+    <property name="geometry">
+     <rect>
+      <x>181</x>
+      <y>10</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSlider" name="zoomVerticalSlider">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>90</y>
+      <width>16</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>60</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zoom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>90</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100%</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>230</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0%</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="portStatusLabel">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>40</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>443</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="CameraDeSurveillance.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>OpenPortButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>openPort()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveDownButon</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>MoveDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>229</x>
+     <y>351</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveUpButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>MoveUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>229</x>
+     <y>311</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveRightButon</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>MoveRight()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>309</x>
+     <y>341</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveLeftButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>MoveLeft()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>114</x>
+     <y>341</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>powerbutton</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>powerON()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>initbutton</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>camInitialisation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>autobutton</sender>
+   <signal>clicked()</signal>
+   <receiver>CameraDeSurveillanceClass</receiver>
+   <slot>autoMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>camInitialisation()</slot>
+  <slot>powerOn()</slot>
+  <slot>autoMode()</slot>
+  <slot>openPort()</slot>
+  <slot>MoveUp()</slot>
+  <slot>MoveDown()</slot>
+  <slot>MoveRight()</slot>
+  <slot>MoveLeft()</slot>
+ </slots>
+</ui>
