@@ -87,8 +87,44 @@ void CameraDeSurveillance::openPort()
 {
     if (ui.portChoiceComboBox->currentIndex() < 0)
     {
-        ui.portStatusLabel->setText("Veuillez sélectionner un port.");
+        switch (ui.ChoseLanguage->currentIndex()) {
+        case 0:
+            ui.portStatusLabel->setText("Veuillez selectionner un port.");
+            break;
+        case 1:
+            ui.portStatusLabel->setText("Please select a port.");
+            break;
+        case 2:
+            ui.portStatusLabel->setText("Bitte waehlen Sie einen Port.");
+            break;
+        case 3:
+            ui.portStatusLabel->setText("Yarja ikhtiyar manfath.");
+            break;
+        case 4:
+            ui.portStatusLabel->setText("Goulit ul port.");
+            break;
+        case 5:
+            ui.portStatusLabel->setText("Pora otkryt' port.");
+            break;
+        case 6:
+            ui.portStatusLabel->setText("Qing xuanze yi ge duankou.");
+            break;
+        case 7:
+            ui.portStatusLabel->setText("Por favor seleccione un puerto.");
+            break;
+        case 8:
+            ui.portStatusLabel->setText("Molimo odaberite port.");
+            break;
+        case 9:
+            ui.portStatusLabel->setText("Portum aperire selige.");
+            break;
+        case 10:
+            ui.portStatusLabel->setText("Anoigma thyras, parakalw epilogh.");
+            break;
+        }
+
         return;
+    
     }
 
     // Créez un nouveau port série et passez-le à ControleCamera
@@ -97,11 +133,80 @@ void CameraDeSurveillance::openPort()
     // Vérifiez si le port peut être ouvert via ControleCamera
     if (controleCamera->openPort(port))  // Appel de la méthode openPort() dans ControleCamera
     {
-        ui.portStatusLabel->setText("Statut port: Ouvert");
+        switch (ui.ChoseLanguage->currentIndex()) {
+        case 0:
+            ui.portStatusLabel->setText("Statut port: Ouvert");
+            break;
+        case 1:
+            ui.portStatusLabel->setText("Port status: Open");
+            break;
+        case 2:
+            ui.portStatusLabel->setText("Port status: Offen");
+            break;
+        case 3:
+            ui.portStatusLabel->setText("Statut al manfath: Maftuh");
+            break;
+        case 4:
+            ui.portStatusLabel->setText("Status port: Ouvert");
+            break;
+        case 5:
+            ui.portStatusLabel->setText("Status port: Otkryt");
+            break;
+        case 6:
+            ui.portStatusLabel->setText("Zhuangtai duankou: Daka");
+            break;
+        case 7:
+            ui.portStatusLabel->setText("Estado del puerto: Abierto");
+            break;
+        case 8:
+            ui.portStatusLabel->setText("Status porta: Otvoren");
+            break;
+        case 9:
+            ui.portStatusLabel->setText("Status portus: Apertus");
+            break;
+        case 10:
+            ui.portStatusLabel->setText("Katalogi thyras: Anoigmeni");
+            break;
+        }
+
     }
     else
     {
-        ui.portStatusLabel->setText("Erreur: " + port->errorString());
+        switch (ui.ChoseLanguage->currentIndex()) {
+        case 0:
+            ui.portStatusLabel->setText("Erreur: " + port->errorString());
+            break;
+        case 1:
+            ui.portStatusLabel->setText("Error: " + port->errorString());
+            break;
+        case 2:
+            ui.portStatusLabel->setText("Fehler: " + port->errorString());
+            break;
+        case 3:
+            ui.portStatusLabel->setText("Khata: " + port->errorString());
+            break;
+        case 4:
+            ui.portStatusLabel->setText("Erreur: " + port->errorString());
+            break;
+        case 5:
+            ui.portStatusLabel->setText("Oshibka: " + port->errorString());
+            break;
+        case 6:
+            ui.portStatusLabel->setText("Cuowu: " + port->errorString());
+            break;
+        case 7:
+            ui.portStatusLabel->setText("Error: " + port->errorString());
+            break;
+        case 8:
+            ui.portStatusLabel->setText("Greska: " + port->errorString());
+            break;
+        case 9:
+            ui.portStatusLabel->setText("Error: " + port->errorString());
+            break;
+        case 10:
+            ui.portStatusLabel->setText("Lathos: " + port->errorString());
+            break;
+        }
     }
 }
 
@@ -213,6 +318,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Droite");
         ui.moveUpButton->setText("Monter");
         ui.powerbutton->setText("Allumer");
+        ui.portStatusLabel->setText("");
         break;
           
     case 1:
@@ -226,6 +332,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Right");
         ui.moveUpButton->setText("Up");
         ui.powerbutton->setText("Turn On");
+        ui.portStatusLabel->setText("");
         break;
 
     case 2:
@@ -239,6 +346,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Rechts");
         ui.moveUpButton->setText("Nach oben");
         ui.powerbutton->setText("Zum Leuchten");
+        ui.portStatusLabel->setText("");
         break;
 
     case 3:
@@ -252,6 +360,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("yamin");
         ui.moveUpButton->setText("sooud");
         ui.powerbutton->setText("tashghil");
+        ui.portStatusLabel->setText("");
         break;
         
     case 4: 
@@ -265,6 +374,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Tu dehou");
         ui.moveUpButton->setText("Pignat");
         ui.powerbutton->setText("Prenan");
+        ui.portStatusLabel->setText("");
         break;
 
     case 5:
@@ -278,6 +388,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Vpravo");
         ui.moveUpButton->setText("Vverkh");
         ui.powerbutton->setText("Vklyuchit'");
+        ui.portStatusLabel->setText("");
         break;
 
     case 6:
@@ -291,6 +402,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("xiang you");
         ui.moveUpButton->setText("xiang shang");
         ui.powerbutton->setText("da kai dian yuan");
+        ui.portStatusLabel->setText("");
         break;
     
     case 7:
@@ -304,7 +416,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Derecha");
         ui.moveUpButton->setText("Subir");
         ui.powerbutton->setText("Encender");
-
+        ui.portStatusLabel->setText("");
         break;
     
     case 8:
@@ -318,7 +430,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Desno");
         ui.moveUpButton->setText("Gore");
         ui.powerbutton->setText("Ukljuci");
-
+        ui.portStatusLabel->setText("");
         break;
     
     case 9:
@@ -332,6 +444,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Dextrorsum");
         ui.moveUpButton->setText("Ascendere");
         ui.powerbutton->setText("Accendere");
+        ui.portStatusLabel->setText("");
         break;
     
     case 10:
@@ -345,6 +458,7 @@ void CameraDeSurveillance::ChangeLanguage()
         ui.moveRightButon->setText("Dexia");
         ui.moveUpButton->setText("Epanw");
         ui.powerbutton->setText("Anoigma");
+        ui.portStatusLabel->setText("");
         break;
     }
     
