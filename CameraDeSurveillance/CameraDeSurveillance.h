@@ -27,7 +27,10 @@ private slots:
     void moveDown();
     void moveLeft();
     void moveRight();
-    void autoMode();
+    void autoMode();  
+    void ChangeLanguage();
+
+
 
 private:
     void setupConnections();
