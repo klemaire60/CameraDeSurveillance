@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cam�ra de Surveillance</title>
+    <title>Caméra de Surveillance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -57,7 +57,7 @@
             flex-direction: column;
             align-items: center;
             width: 30%;
-            margin-top: 20px; /* Descendre les boutons directionnels */
+            margin-top: 20px;
         }
 
         .direction-grid {
@@ -78,7 +78,7 @@
 
         .language-controls {
             align-items: flex-start;
-            margin-bottom: 20px; /* Remonte la section langue */
+            margin-bottom: 20px;
         }
 
         .zoom-controls {
@@ -117,51 +117,170 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cam�ra de Surveillance</h1>
+        <h1 id="title">Caméra de Surveillance</h1>
         <div class="layout">
-            <!-- Contr�le du port -->
             <div class="port-controls">
-                <label for="port">S�lection du port</label>
+                <label id="port-label" for="port">Sélection du port</label>
                 <select id="port">
                     <option>COM 1</option>
                 </select>
-                <button>Ouvrir le port</button>
-                <span>Statut port : Ouvert</span>
+                <button id="open-port">Ouvrir le port</button>
+                <span id="port-status">Statut port : Ouvert</span>
                 <div class="buttons">
-                    <button>Allumer</button>
-                    <button>Initialiser</button>
-                    <button>Mode Automatique</button>
+                    <button id="power">Allumer</button>
+                    <button id="initialize">Initialiser</button>
+                    <button id="auto-mode">Mode Automatique</button>
                 </div>
             </div>
-            <!-- Contr�le directionnel -->
             <div class="direction-controls">
                 <div class="direction-grid">
                     <div></div>
-                    <button>Monter</button>
+                    <button id="up">Monter</button>
                     <div></div>
-                    <button>Gauche</button>
+                    <button id="left">Gauche</button>
                     <div></div>
-                    <button>Droite</button>
+                    <button id="right">Droite</button>
                     <div></div>
-                    <button>Descendre</button>
+                    <button id="down">Descendre</button>
                 </div>
             </div>
-            <!-- Contr�le langue et zoom -->
             <div>
                 <div class="language-controls">
-                    <label for="language">Changer la langue</label>
+                    <label id="language-label" for="language">Changer la langue</label>
                     <select id="language">
-                        <option>Fran�ais</option>
-                        <option>Anglais</option>
+                        <option value="fr">Français</option>
+                        <option value="en">Anglais</option>
+                        <option value="es">Español</option>
+                        <option value="de">Deutsch</option>
+                        <option value="zh">中文</option>
+                        <option value="ru">Русский</option>
                     </select>
                 </div>
                 <div class="zoom-controls">
-                    <label for="zoom">Zoom</label>
+                    <label id="zoom-label" for="zoom">Zoom</label>
                     <input id="zoom" class="zoom-slider" type="range" min="0" max="100" value="50">
-                    <div>0%</div>
+                    <div id="zoom-value">50%</div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const translations = {
+            fr: {
+                title: "Caméra de Surveillance",
+                portLabel: "Sélection du port",
+                openPort: "Ouvrir le port",
+                portStatus: "Statut port : Ouvert",
+                power: "Allumer",
+                initialize: "Initialiser",
+                autoMode: "Mode Automatique",
+                up: "Monter",
+                down: "Descendre",
+                left: "Gauche",
+                right: "Droite",
+                languageLabel: "Changer la langue",
+                zoomLabel: "Zoom",
+            },
+            en: {
+                title: "Surveillance Camera",
+                portLabel: "Select Port",
+                openPort: "Open Port",
+                portStatus: "Port Status: Open",
+                power: "Power On",
+                initialize: "Initialize",
+                autoMode: "Automatic Mode",
+                up: "Up",
+                down: "Down",
+                left: "Left",
+                right: "Right",
+                languageLabel: "Change Language",
+                zoomLabel: "Zoom",
+            },
+            es: {
+                title: "Cámara de Vigilancia",
+                portLabel: "Seleccionar puerto",
+                openPort: "Abrir puerto",
+                portStatus: "Estado del puerto: Abierto",
+                power: "Encender",
+                initialize: "Inicializar",
+                autoMode: "Modo Automático",
+                up: "Arriba",
+                down: "Abajo",
+                left: "Izquierda",
+                right: "Derecha",
+                languageLabel: "Cambiar idioma",
+                zoomLabel: "Zoom",
+            },
+            de: {
+                title: "Überwachungskamera",
+                portLabel: "Port auswählen",
+                openPort: "Port öffnen",
+                portStatus: "Portstatus: Offen",
+                power: "Einschalten",
+                initialize: "Initialisieren",
+                autoMode: "Automatischer Modus",
+                up: "Hoch",
+                down: "Runter",
+                left: "Links",
+                right: "Rechts",
+                languageLabel: "Sprache ändern",
+                zoomLabel: "Zoom",
+            },
+            zh: {
+                title: "监控摄像头",
+                portLabel: "选择端口",
+                openPort: "打开端口",
+                portStatus: "端口状态：打开",
+                power: "开机",
+                initialize: "初始化",
+                autoMode: "自动模式",
+                up: "上",
+                down: "下",
+                left: "左",
+                right: "右",
+                languageLabel: "切换语言",
+                zoomLabel: "缩放",
+            },
+            ru: {
+                title: "Камера Наблюдения",
+                portLabel: "Выбор порта",
+                openPort: "Открыть порт",
+                portStatus: "Статус порта: Открыт",
+                power: "Включить",
+                initialize: "Инициализировать",
+                autoMode: "Автоматический режим",
+                up: "Вверх",
+                down: "Вниз",
+                left: "Влево",
+                right: "Вправо",
+                languageLabel: "Изменить язык",
+                zoomLabel: "Увеличение",
+            },
+        };
+
+        const updateTexts = (language) => {
+            const t = translations[language];
+            document.getElementById("title").textContent = t.title;
+            document.getElementById("port-label").textContent = t.portLabel;
+            document.getElementById("open-port").textContent = t.openPort;
+            document.getElementById("port-status").textContent = t.portStatus;
+            document.getElementById("power").textContent = t.power;
+            document.getElementById("initialize").textContent = t.initialize;
+            document.getElementById("auto-mode").textContent = t.autoMode;
+            document.getElementById("up").textContent = t.up;
+            document.getElementById("down").textContent = t.down;
+            document.getElementById("left").textContent = t.left;
+            document.getElementById("right").textContent = t.right;
+            document.getElementById("language-label").textContent = t.languageLabel;
+            document.getElementById("zoom-label").textContent = t.zoomLabel;
+        };
+
+        document.getElementById("language").addEventListener("change", (e) => {
+            updateTexts(e.target.value);
+        });
+
+        updateTexts("fr");
+    </script>
 </body>
 </html>
