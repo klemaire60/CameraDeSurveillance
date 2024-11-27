@@ -14,6 +14,7 @@ private:
     ControleCamera* controleCamera;
     QSerialPort* port;
     bool waitingForConfirmation = false;
+    void setupConnections();
 
 public:
     CameraDeSurveillance(QWidget* parent = nullptr);
@@ -29,9 +30,4 @@ private slots:
     void moveRight();
     void autoMode();  
     void ChangeLanguage();
-
-
-
-private:
-    void setupConnections();
 };
