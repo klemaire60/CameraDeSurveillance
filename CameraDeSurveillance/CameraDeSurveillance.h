@@ -4,6 +4,7 @@
 #include "ui_CameraDeSurveillance.h"
 #include <QSerialPort>
 #include "ControleCamera.h"
+#include "WebSocketServer.h"
 
 class CameraDeSurveillance : public QMainWindow
 {
@@ -14,6 +15,7 @@ private:
     ControleCamera* controleCamera;
     QSerialPort* port;
     bool waitingForConfirmation = false;
+    WebSocketServer* webSocketServer;
 
 public:
     CameraDeSurveillance(QWidget* parent = nullptr);

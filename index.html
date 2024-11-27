@@ -276,11 +276,38 @@
             document.getElementById("zoom-label").textContent = t.zoomLabel;
         };
 
-        document.getElementById("language").addEventListener("change", (e) => {
-            updateTexts(e.target.value);
+        const ws = new WebSocket("ws://localhost:12345");
+
+        ws.onopen = () => console.log("WebSocket connecté");
+        ws.onclose = () => console.log("WebSocket déconnecté");
+
+        const sendCommand = (command) => {
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send(command);
+            } else {
+                console.error("WebSocket non connecté");
+            }
+        };
+
+        document.getElementById("power").addEventListener("click", () => sendCommand("POWER_ON"));
+        document.getElementById("initialize").addEventListener("click", () => sendCommand("INITIALIZE"));
+        document.getElementById("auto-mode").addEventListener("click", () => sendCommand("AUTO_MODE"));
+        document.getElementById("up").addEventListener("click", () => sendCommand("MOVE_UP"));
+        document.getElementById("down").addEventListener("click", () => sendCommand("MOVE_DOWN"));
+        document.getElementById("left").addEventListener("click", () => sendCommand("MOVE_LEFT"));
+        document.getElementById("right").addEventListener("click", () => sendCommand("MOVE_RIGHT"));
+        document.getElementById("zoom").addEventListener("input", (e) => {
+            const zoomValue = e.target.value;
+            document.getElementById("zoom-value").textContent = `${zoomValue}%`;
+            sendCommand(`ZOOM_${zoomValue}`);
         });
 
-        updateTexts("fr");
+        document.getElementById("language").addEventListener("change", (e) => updateTexts(e.target.value));
+
+        document.getElementById("open-port").addEventListener("click", () => {
+            sendCommand("OPEN_PORT");
+            document.getElementById("port-status").textContent = "Statut port : Ouvert";
+        });
     </script>
 </body>
 </html>

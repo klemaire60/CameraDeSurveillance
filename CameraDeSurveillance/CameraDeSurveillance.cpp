@@ -38,7 +38,12 @@ CameraDeSurveillance::CameraDeSurveillance(QWidget* parent)
         ui.portChoiceComboBox->addItem(info.portName(), QVariant(info.portName()));
     }
 
-    setupConnections();  // Initialisation des connexions entre boutons et slots
+    // Initialisation du serveur WebSocket
+        webSocketServer = new WebSocketServer(controleCamera, this);
+    if (!webSocketServer->startServer(12345)) {  // Port WebSocket
+        qDebug() << "Échec du démarrage du serveur WebSocket.";
+    }
+    setupConnections();
 }
 
 //---------------------------------------------------------------------------------------------
