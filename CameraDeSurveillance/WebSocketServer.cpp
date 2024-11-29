@@ -43,8 +43,9 @@ void WebSocketServer::onTextMessageReceived(const QString& message)
     else if (message == "MOVE_DOWN") cameraControl->MoveDown();
     else if (message == "MOVE_LEFT") cameraControl->MoveLeft();
     else if (message == "MOVE_RIGHT") cameraControl->MoveRight();
-    else if (message == "ZOOM_IN") cameraControl->adjustZoom(500); // Exemple
-    else if (message == "ZOOM_OUT") cameraControl->adjustZoom(0); // Exemple
+    else if (message == "ZOOM_IN") cameraControl->adjustZoom(500);
+    else if (message == "ZOOM_OUT") cameraControl->adjustZoom(0);
+    else if (message == "INITIALIZE") cameraControl->camInitialisation();
 }
 
 void WebSocketServer::onClientDisconnected()
