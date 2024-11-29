@@ -68,16 +68,16 @@
             gap: 5px;
         }
 
-            .direction-grid button {
-                width: 100%;
-                height: 50px;
-                text-align: center;
-                border-radius: 5px;
-                border: 1px solid #0078d7;
-                background-color: #fef6e4;
-                font-size: 14px;
-                transition: background-color 0.3s, box-shadow 0.3s;
-            }
+        .direction-grid button {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #0078d7;
+            background-color: #fef6e4;
+            font-size: 14px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
 
         button:hover {
             background-color: #cceeff;
@@ -150,10 +150,10 @@
             <div class="port-controls">
                 <label id="port-label" for="port">Sélection du port</label>
                 <select id="port">
-                    <option>COM 1</option>
+                    <option>COM1</option>
                 </select>
                 <button id="open-port">Ouvrir le port</button>
-                <span id="port-status">Statut port : Ouvert</span>
+                <span id="port-status">Statut port : Fermé [En attente]</span>
                 <div class="buttons">
                     <button id="power">Allumer</button>
                     <button id="initialize">Initialiser</button>
@@ -199,7 +199,9 @@
                 title: "Caméra de Surveillance",
                 portLabel: "Sélection du port",
                 openPort: "Ouvrir le port",
-                portStatus: "Statut port : Ouvert",
+                portStatus: "Statut port : Fermé [En attente]",
+                portStatusSuccess: "Statut port : Ouvert",
+                portStatusFailure: "Statut port : Fermé [Erreur lors de l'ouverture]",
                 power: "Allumer",
                 initialize: "Initialiser",
                 autoMode: "Mode Automatique",
@@ -214,7 +216,9 @@
                 title: "Surveillance Camera",
                 portLabel: "Select Port",
                 openPort: "Open Port",
-                portStatus: "Port Status: Open",
+                portStatus: "Port status : Closed [Awaiting]",
+                portStatusSuccess: "Port status : Open",
+                portStatusFailure: "Port status : Closed [Failed to open port]",
                 power: "Power On",
                 initialize: "Initialize",
                 autoMode: "Automatic Mode",
@@ -229,7 +233,9 @@
                 title: "Cámara de Vigilancia",
                 portLabel: "Seleccionar puerto",
                 openPort: "Abrir puerto",
-                portStatus: "Estado del puerto: Abierto",
+                portStatus: "Statut port : Fermé [En attente]",
+                portStatusSuccess: "Statut port : Ouvert",
+                portStatusFailure: "Statut port : Fermé [Erreur lors de l'ouverture]",
                 power: "Encender",
                 initialize: "Inicializar",
                 autoMode: "Modo Automático",
@@ -244,7 +250,9 @@
                 title: "Überwachungskamera",
                 portLabel: "Port auswählen",
                 openPort: "Port öffnen",
-                portStatus: "Portstatus: Offen",
+                portStatus: "Statut port : Fermé [En attente]",
+                portStatusSuccess: "Statut port : Ouvert",
+                portStatusFailure: "Statut port : Fermé [Erreur lors de l'ouverture]",
                 power: "Einschalten",
                 initialize: "Initialisieren",
                 autoMode: "Automatischer Modus",
@@ -259,7 +267,9 @@
                 title: "监控摄像头",
                 portLabel: "选择端口",
                 openPort: "打开端口",
-                portStatus: "端口状态：打开",
+                portStatus: "Statut port : Fermé [En attente]",
+                portStatusSuccess: "Statut port : Ouvert",
+                portStatusFailure: "Statut port : Fermé [Erreur lors de l'ouverture]",
                 power: "开机",
                 initialize: "初始化",
                 autoMode: "自动模式",
@@ -274,7 +284,9 @@
                 title: "Камера Наблюдения",
                 portLabel: "Выбор порта",
                 openPort: "Открыть порт",
-                portStatus: "Статус порта: Открыт",
+                portStatus: "Statut port : Fermé [En attente]",
+                portStatusSuccess: "Statut port : Ouvert",
+                portStatusFailure: "Statut port : Fermé [Erreur lors de l'ouverture]",
                 power: "Включить",
                 initialize: "Инициализировать",
                 autoMode: "Автоматический режим",
@@ -308,6 +320,18 @@
 
         ws.onopen = () => console.log("WebSocket connecté");
         ws.onclose = () => console.log("WebSocket déconnecté");
+        ws.onmessage = (event) => {
+            console.log("Message reçu du serveur :", event.data);
+
+            if (event.data == "OPEN_PORT_SUCCESS")
+            {
+                document.getElementById("port-status").textContent = translations[document.getElementById("language").value].portStatusSuccess;
+            }
+            else if (event.data == "OPEN_PORT_FAILURE")
+            {
+                document.getElementById("port-status").textContent = translations[document.getElementById("language").value].portStatusFailure;
+            }
+        };
 
         const sendCommand = (command) => {
             if (ws.readyState === WebSocket.OPEN) {
@@ -333,8 +357,9 @@
         document.getElementById("language").addEventListener("change", (e) => updateTexts(e.target.value));
 
         document.getElementById("open-port").addEventListener("click", () => {
-            sendCommand("OPEN_PORT");
-            document.getElementById("port-status").textContent = "Statut port : Ouvert";
+            const selectedPort = document.getElementById("port").value;
+            const portCommand = `OPEN_PORT_${selectedPort.replace(" ", "_").toUpperCase()}`;
+            sendCommand(portCommand);
         });
     </script>
 </body>
